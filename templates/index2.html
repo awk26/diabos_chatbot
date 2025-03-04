@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}.container {
+    width: 400px;
+    margin: 50px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}.header {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}.header-left {
+    display: flex;
+    align-items: center;
+}.back-icon {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}.assistant-name {
+    font-size: 16px;
+}.header-right {
+    font-size: 20px;
+    cursor: pointer;
+}.chat-area {
+    background-color: #fff;
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+}.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}.bot {
+    background-color: #eee;
+    align-self: flex-start;
+}.knowledge-card {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}.knowledge-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}.knowledge-icon {
+    font-size: 20px;
+    margin-right: 5px;
+}.knowledge-description {
+    font-size: 14px;
+    color: #888;
+}.input-area {
+    background-color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ddd;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}.send-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <span class="back-icon">&#8612;</span>
+                <span class="assistant-name">Dia <br> AI Assistant</span>
+            </div>
+            <div class="header-right">
+                <span class="option-icon">&#8943;</span>
+            </div>
+        </div>
+        <div class="chat-area">
+            <div class="message bot">
+                <span class="message-content">What can I help you with today?</span>
+            </div>
+            <div class="knowledge-card">
+                <div class="knowledge-title">
+                    <span class="knowledge-icon">&#9881;</span>
+                    <span class="knowledge-text">Enhanced Knowledge Management</span>
+                </div>
+                <div class="knowledge-description">
+                    <span>Generating reports</span>
+                </div>
+            </div>
+        </div>
+        <div class="input-area">
+            <input type="text" placeholder="Enter text here">
+            <button class="send-button">&#9658;</button>
+        </div>
+    </div>
+</body>
+</html>

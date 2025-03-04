@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/style1.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="assistant-info">
+                <img src="assistant-icon.png" alt="Assistant Icon" class="assistant-icon">
+                <div>
+                    <h1>Dia</h1>
+                    <p>AI Assistant</p>
+                </div>
+            </div>
+        </header>
+        <main class="chat-body">
+            <div class="chat-messages">
+                <!-- Messages will be dynamically loaded here -->
+            </div>
+            <div class="loading-indicator">
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+                <span class="loading-dot"></span>
+            </div>
+        </main>
+        <footer class="chat-footer">
+            <input type="text" id="chat-input" placeholder="Enter text here">
+            <button id="send-btn">&#10148;</button>
+        </footer>
+    </div>
+  <script>
+    // script.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.querySelector('.chat-messages');
+    const loadingIndicator = document.querySelector('.loading-indicator');
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage === '') return;
+
+        displayMessage(userMessage, 'user');
+        chatInput.value = '';
+        fetchResponse(userMessage);
+    }
+
+    function displayMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', `${sender}-message`);
+        messageElement.textContent = message;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function fetchResponse(userMessage) {
+        loadingIndicator.style.display = 'flex';
+
+        fetch('/get_response', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userMessage }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            loadingIndicator.style.display = 'none';
+            displayMessage(data.response, 'assistant');
+        })
+        .catch(error => {
+            loadingIndicator.style.display = 'none';
+            displayMessage('An error occurred. Please try again.', 'assistant');
+            console.error('Error:', error);
+        });
+    }
+});
+
+  </script>  
+</body>
+</html>
